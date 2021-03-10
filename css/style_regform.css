@@ -1,8 +1,9 @@
-@import url('https://fonts.googleapis.com/css2?family=Raleway&display=swap');
+
 *{
     margin: 0;
     padding:0;
     font-family: 'Raleway', sans-serif;
+    box-sizing: border-box;
 }
 .head{
     border-bottom:2px solid gray;
@@ -16,6 +17,7 @@
 .head h1{
     display: inline;
     color: #ff7252;
+    font-weight: 800;
 }
 a{
     text-decoration: none;
@@ -30,16 +32,27 @@ a{
     color:#ff7252 !important;
 }
 .container{
-    width:30%;
+    width:fit-content;
     margin:auto;
-    margin-top: 12%;
+    margin-top: 5%;
     color: #707070;
     border-radius: 20px;
     border:2px solid #707070;
-    text-align: center;
+    padding:2rem;
+
 }
-.container h1{
+.container a, p{
+    text-align:center;
+}
+.container a{
+    color:#ff7252
+}
+.container a:hover{
+    color: #a14530;
+}
+.container h2{
     color: #36213E;
+    text-align: center;
 
 }
 .container input[type="submit"]{
@@ -49,29 +62,42 @@ a{
     color: white;
     margin-bottom: 2%;
     padding:10px;
-    margin-left: 10px;
     font-size: 200%;
+    width: 50%;
+    display: block;
+    margin: 1% auto 0;
+    font-size: 20px;
     
 }
 .container input[type="submit"]:hover{
     background-color: #a14530;
 }
-.container .que{
-    font-size: 60px;
-}
-.description{
-color: #707070;
-text-align: center;
-font-size: 30px;
-}
-footer{
-    background-color: #36213E;
-    text-align: center;
-    color: white;
-    padding: 30px;
+.container input[type="text"], .container input[type="password"]{
+    border-radius: 50px;
+    border:2px #707070 solid;
+    color: #36213E;
+    height: 40px;
+    padding:10px;
     width:100%;
-    position: absolute;
-    box-sizing: border-box;
-    bottom:0;
-    
+    margin:0 auto;
+    margin-top: .5rem;
+    font-size: 18px;
+}
+
+.container input[type="text"]:focus, .container input[type="password"]:focus,#show:focus{
+  border: #ff7252 solid 2px;
+  outline-width: 0;
+}
+.mess p{
+    text-align: center;
+    font-size: 25px;
+}
+.container #show{
+    background-color: transparent;
+    border: none;
+    display: inline;
+    margin-left: -30px;
+    font-size: 20px;
+    color:#707070;
+
 }

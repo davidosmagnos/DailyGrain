@@ -1,0 +1,32 @@
+*{
+    margin: 0;
+    padding:0;
+    font-family: 'Raleway', sans-serif;
+    box-sizing: border-box;
+}
+.head{
+    border-bottom:2px solid gray;
+    padding:10px
+}
+.links ul,li{
+    list-style: none;
+    display: inline;
+    margin-right: 10px;
+}
+.head h1{
+    display: inline;
+    color: #ff7252;
+    font-weight: 800;
+}
+a{
+    text-decoration: none;
+    color: #707070;
+}
+.links{
+    display:inline;
+    position:relative;
+    left:55%
+}
+.links a:hover{
+    color:#ff7252 !important;
+}
