@@ -9,79 +9,129 @@ $questions = array("How sticky do you like your rice?","How Tender do you Like y
 
 if(isset($_POST['sticky'])){
     $_SESSION['question']=2;
-    $sticky = $_POST['sticky'];
+    $_SESSION['sticky'] = $_POST['sticky'];
 }
-if(isset($_POST['tender'])){
+elseif(isset($_POST['tender'])){
     $_SESSION['question']=3;
-    $tender = $_POST['tender'];
+    $_SESSION['tender'] = $_POST['tender'];
 }
-if(isset($_POST['cook'])){
+elseif(isset($_POST['cook'])){
     $_SESSION['question']=4;
-    $cook = $_POST['cook'];
+    $_SESSION['cook'] = $_POST['cook'];
 }
-if(isset($_POST['color'])){
-    $_SESSION['question'] = 0;
-    $color = $_POST['color'];
+elseif(isset($_POST['color'])){
+    $_SESSION['color'] = $_POST['color'];
+    header("location:quiz_result.php");
 }
 ?>
-<!DOCTYPE html>
-<html lang="en">
+
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="css/styles_quiz.css">
+    <link rel="stylesheet" type="text/css" href="css/style.css?v=<?php echo time(); ?>">
+    
+    <link rel="icon" href="resources/Untitled-1.png">
+    <title>Quiz |  DailyGrain</title>
 </head>
 <body>
-    <div class="head">
-        <h1>DailyGrain</h1>
-        <div class="links">
-        <ul>
-            <li><a href="#">Home</a></li>
-            <li><a href="#">Products</a></li>
-            <li><a href="#" style="color:#ff7252;"><b>Take Quiz</b></a></li>
-            <li><a href="#">Order Summary</a></li>
-            <li><a href="#">Sack</a></li>
-            <li><a href="#">Logout</a></li>
-        </ul>
-        </div>
-    </div>
-    <div class="container">
-       <h1 style="text-align:center;">Question <?php echo $_SESSION['question'] ?>:</h1><br>
-        <form action="<?php $_SERVER['PHP_SELF']?>" method="post">
-            <?php  
-                if($_SESSION['question']==1){
-                    echo "<h1 class='que'>",$questions[0],"</h1><br>";
-                    echo '<input type="submit" value="Malagkit" name="sticky" id="malagkit" onmouseover ="disp(this.id)" onmouseout="out()">';
-                    echo '<input type="submit" value="Buhaghag" name="sticky" id="buhaghag" onmouseover ="disp(this.id)" onmouseout="out()">';
-                }elseif($_SESSION['question']==2){
-                    echo "<h1 class='que'>",$questions[1],"</h1><br>";
-                    echo '<input type="submit" value="Maalsa" name="tender" id="maalsa" onmouseover ="disp(this.id)" onmouseout="out()">';
-                    echo '<input type="submit" value="Maligat" name="tender" id="maligat" onmouseover ="disp(this.id)" onmouseout="out()">';
-                }elseif($_SESSION['question']==3){
-                    echo "<h1 class='que'>",$questions[2],"</h1><br>";
-                    echo '<input type="submit" value="Sinangag" name="cook" id="fried" onmouseover ="disp(this.id)" onmouseout="out()">';
-                    echo '<input type="submit" value="Sinaing" name="cook" id="steam" onmouseover ="disp(this.id)" onmouseout="out()">';
-                }elseif($_SESSION['question']==4){
-                    echo "<h1 class='que'>",$questions[3],"</h1><br>";
-                    echo '<input type="submit" value="White Rice" name="color" id="white" onmouseover ="disp(this.id)" onmouseout="out()">';
-                    echo '<input type="submit" value="Brown Rice" name="color" id="brown" onmouseover ="disp(this.id)" onmouseout="out()">';
+  <header class="cd-auto-hide-header">
+    <div class="logo"><a href="#0" id="title" class="lg">DailyGrain</a></div>
+
+    <nav class="cd-primary-nav">
+        <a href="#cd-navigation" class="nav-trigger">
+            <span>
+                <em aria-hidden="true"></em>
+                Menu
+            </span>
+        </a> <!-- .nav-trigger -->
+
+        <ul id="cd-navigation">
+            <li><a href="index.php">Home</a></li>
+            <li><a href="products.php">Products</a></li>
+            <li><a href="#0"class="active">Take Quiz</a></li>
+            <li><a href="sack-cart.php">Sack</a></li>
+            <li><a href="orders.php">Order Summary</a></li>
+            <?php 
+                if(@$_SESSION['loggedin']){
+                    echo "<li><a href='logout.php'>Logout</a></li>";
+                    echo "<li><a href='user-view.php?user_name=".$_SESSION['uname']."'><b>Hi,".$_SESSION['uname']."</b></a></li>";
+                }else{
+                   echo "<li><a href='login.php'>Login</a></li>
+                    ";
                 }
             
             ?>
-        </form>
-    </div>
-    <br>
-    <div class="description">
+        </ul>
+    </nav> <!-- .cd-primary-nav -->
+</header>
+   <div class = "center-main">
+    <div class = "form">
+
+      <form action="<?php $_SERVER['PHP_SELF']?>" method="post">
+              <h2 class='form-h2'>Question <?php echo $_SESSION['question'] ?>:</h2>
+              
+              
+             <?php  
+                if($_SESSION['question']==1){
+                    echo "<h2 class='form-h2'>",$questions[0],"</h1><br>";
+                    echo '<div class="order-confirm-btn-layout"><input type="submit" class="btn-choices" value="Malagkit" name="sticky" id="malagkit" onmouseover ="disp(this.id)" onmouseout="out()">';
+                    echo '<input type="submit" class="btn-choices" value="Buhaghag" name="sticky" id="buhaghag" onmouseover ="disp(this.id)" onmouseout="out()"></div>';
+                }elseif($_SESSION['question']==2){
+                    echo "<h2 class='form-h2'>",$questions[1],"</h1><br>";
+                    echo '<div class="order-confirm-btn-layout"><input type="submit" class="btn-choices" value="Maalsa" name="tender" id="maalsa" onmouseover ="disp(this.id)" onmouseout="out()">';
+                    echo '<input type="submit" class="btn-choices" value="Maligat" name="tender" id="maligat" onmouseover ="disp(this.id)" onmouseout="out()"></div>';
+                }elseif($_SESSION['question']==3){
+                    echo "<h2 class='form-h2'>",$questions[2],"</h1><br>";
+                    echo '<div class="order-confirm-btn-layout"><input type="submit" class="btn-choices" value="Sinangag" name="cook" id="fried" onmouseover ="disp(this.id)" onmouseout="out()">';
+                    echo '<input type="submit" class="btn-choices" value="Sinaing" name="cook" id="steam" onmouseover ="disp(this.id)" onmouseout="out()"></div>';
+                }elseif($_SESSION['question']==4){
+                    echo "<h2 class='form-h2'>",$questions[3],"</h1><br>";
+                    echo '<div class="order-confirm-btn-layout"><input type="submit" class="btn-choices" value="White" name="color" id="white" onmouseover ="disp(this.id)" onmouseout="out()">';
+                    echo '<input type="submit" class="btn-choices" value="Brown" name="color" id="brown" onmouseover ="disp(this.id)" onmouseout="out()"></div>';
+                }
+            
+            ?>
+
+             
+                    
+      </form>
+
+      <div class="description">
         <h2>Description Legend:</h2>
         <span id="desc"> </span>
+      </div>
+
     </div>
-    <footer>
-    <h4>All rights reserved</h4>
-    </footer>
-        
-    <script>
+    </div><br>
+     <?php 
+                if(isset($_POST['save'])){
+                    $imgname= $_POST['imgname'];
+                    $pname = $_POST['pname'];
+                    $price= $_POST['price'];
+                    $info = $_POST['p_info'];
+
+                    $saveqry = ("
+                      INSERT INTO products(IMGNAME,NAME,PRICE,INFORMATION) VALUES ('$imgname','$pname','$price','$info');
+                  ");
+                    if($conn->query($saveqry)===TRUE){
+                        echo '<script>alert("Item added succesfully.")</script>';
+                    }else{
+                        echo '<script>alert("$conn->error")</script>'; 
+                    }
+                  
+              }
+    ?>
+
+<footer>
+<p id="title" class="ft">DailyGrain</p>
+<p>All rights reserved.</p>
+</footer>   
+<!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>--->
+<script>
+    if( !window.jQuery ) document.write('<script src="js/jquery-3.0.0.min.js"><\/script>');
+</script>
+<script src="js/main.js"></script> <!-- Resource jQuery -->
+
+  <script>
         function disp(id){
             var spann = document.getElementById("desc");
             if(id=="malagkit"){
